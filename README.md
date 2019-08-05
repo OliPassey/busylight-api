@@ -14,10 +14,10 @@ The express server will run under the port 9000, this can be either customised u
 
 Currently there are 4 URLs:
 
-* `/api/` should list all connected USB devices, might be useful to see if express sees the Busylights
+* `http://localhost:9000/api/` should list all connected USB devices, might be useful to see if express sees the Busylights
 
-* `/api/blink` should make the busylight ring and blink
+* `http://localhost:9000/api/blink` should make the busylight ring and blink
 
-* `/api/switch-on` should turn on the busylight
+* `http://localhost:9000/api/switch-on` should turn on the busylight
 
-* `/api/switch-off` should turn off the busylight AND close its connection
+* `http://localhost:9000/api/switch-off` should turn off the busylight AND close its connection
