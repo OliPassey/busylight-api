@@ -1,117 +1,23 @@
-# 🚨 Busylight for node
-A node library for the Busylight usb device.
-More info on the Busylight can be found here: http://busylight.com/
+# Busylight API 💡
 
-## Install
+## Quick start
 
-    npm install busylight
-[*extra steps for node-webkit](#node-webkit)
+As usual, `npm install` to install all the required modules, `npm start` to launch the Express API server.
 
-# Quick start
-### Get a Busylight
+## Routes
 
-    var busylight = require('busylight').get()
+`server.js` shouldn't be touched, all the routes callbacks should be created inside `./routes/api/` and then added to `./routes/index.js`
 
-### Make it dance
+The express server will run under the port 9000, this can be either customised using a PORT env variable on your machine or editing the file directly (I'd recommend setting all the sensitive stuff on env vars).
 
-    busylight.ring().pulse();
-    
-### STOP!
+## Endpoints
 
-    busylight.off();
-    
-### Hammertime...
-    busylight.ring('Funky').blink(['red', 'yellow', 'blue', 'green'], 150);
-    
-# Usage
-### Finding an attached busylight
-Get the first available busylight
+Currently there are 4 URLs:
 
-    var busylight = require('busylight').get()
+* `http://localhost:9000/api/` should list all connected USB devices, might be useful to see if express sees the Busylights
 
-Get a specific Busylight attached to the system.
+* `http://localhost:9000/api/blink` should make the busylight ring and blink
 
-    var busylight = require('busylight').get(path);
+* `http://localhost:9000/api/switch-on` should turn on the busylight
 
-The path can be found by looking at the connected Busylights. 
-Pass true if you want to see all connected USB HIDs. This can be useful if the Busylight is not detected.
-
-    var busylights = require('busylight').devices(showAllUSBDevices);
-
-### Defaults method
-Set up different defaults that the busyligt will use if you don't give specific instructions
-
-    busylight.defaults({
-      keepalive: true,      // If the busylight is not kept alive it will turn off after 30 seconds
-      color: 'white',       // The default color to use for light, blink and pulse
-      duration: 30 * 1000,  // The duration for a blink or pulse sequence
-      rate: 300,            // The rate at which to blink or pulse
-      degamma: true,        // Fix rgb colors to present a better light
-      tone: 'OpenOffice',   // Default ring tone
-      volume: 4             // Default volume
-    });
-
-### light(color)
-To make the busylight light a specific color just use a valid css color.
-
-    busylight.light('orange')
-
-To turn it off
-
-    busylight.light(false);
-
-### ring(tone, volume)
-Make the busylight play a ringtone
-
-    busylight.ring('OpenOffice')
-
-Volumesteps
-The busylight accepts volume values of 0-7
-
-Ringtones
-* OpenOffice
-* Quiet
-* Funky
-* FairyTale
-* KuandoTrain
-* TelephoneNordic
-* TelephoneOriginal
-* TelephonePickMeUp
-* Buzz    (Basically annoying white noise)
-
-### blink(colors, rate)
-Fades smoothly between colors. If only a single color is defined it will pulse between that color and no light
-
-    busylight.blink(['red', 'green', 'blue'], 500);
-
-### pulse(colors, rate)
-The pulse method fades smoothly between the defined colors. If only a single color is defined it will pulse between that color and no light
-
-    busylight.pulse(['#f00', '#0f0', '#00f']);
-
-### off()
-Turns everything off.
-    
-    busylight.off();
-
-### close()
-When you are done using the busylight you can use the close method to shut down the connection correctly
-    
-    busylight.close();
-
-### Chaining
-Simple chaining is available to let you eg. ring and blink in one go
-
-    busylight.ring().blink();
-
-Turn it off again
-
-    busylight.ring(false).blink(false);
-
-# Supports
-Currently only the Kuando Busylight has been tested, but it seems the busylight unit is available under different names
-* Kuando Busylight
-
-### <a name="node-webkit"></a>Node-webkit
-Busylight relies on node-hid. node-hid needs to be built for each platform and specific version of node-webkit, so to make it work you need to build node-hid using nw-gyp
-https://github.com/rogerwang/node-webkit/wiki/Build-native-modules-with-nw-gyp
+* `http://localhost:9000/api/switch-off` should turn off the busylight AND close its connection

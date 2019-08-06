@@ -1,1 +1,5 @@
-/node_modules/*
+# Ignore random stuff we don't need
+.vscode
+.DS_Store
+node_modules
+Thumbs.db
