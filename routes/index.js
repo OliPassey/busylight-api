@@ -13,8 +13,8 @@ const routes = [
     callback: require('./api/blink.js'),
   },
   {
-    path: '/switch-on',
-    callback: require('./api/switch-on.js'),
+    path: '/pulse1',
+    callback: require('./api/pulse1.js'),
   },
   {
     path: '/switch-off',
