@@ -20,6 +20,14 @@ const routes = [
     path: '/switch-off',
     callback: require('./api/switch-off.js'),
   },
+  {
+    path: '/green',
+    callback: require('./api/green-quiet.js'),
+  },
+  {
+    path: '/red',
+    callback: require('./api/red-quiet.js'),
+  },
 ];
 
 routes.forEach((route) => {
