@@ -7,5 +7,5 @@ module.exports = (req, res) => {
     setTimeout(() => {
         busylight.ring(false).blink(false);
     }, 5000);
-    res.json({ message: 'Notify Pulse - Green / Quiet' });
+    res.json({ message: 'Notify Pulse - Green Quiet' });
 };
